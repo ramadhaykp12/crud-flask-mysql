@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD APPS</title>
+</head>
+<body>
+    <h1>Data</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Email</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>
+                <a href="{{ url_for('edit', id=row[0])}}">Edit</a>
+                <a href="{{ url_for('delete', id=row[0])}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Tambah Data</h2>
+    <form action="/add" method="post">
+        <label for="nama">Nama:</label>
+        <input type="text", id="nama", name="nama" required>
+        <label for="nama">Email:</label>
+        <input type="text", id="email", name="email" required>
+        <button type="submit">submit</button>
+    </form>
+
+    <a href="{{ url_for('export_csv')}}">Export to csv</a>
+</body>
+</html>
